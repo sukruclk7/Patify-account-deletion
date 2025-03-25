@@ -1,0 +1,326 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Patify - Hesap Silme İşlemi</title>
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --primary-color: #845EC2;
+            --text-color: #333333;
+            --light-gray: #f5f5f5;
+            --medium-gray: #e0e0e0;
+            --dark-gray: #757575;
+            --white: #FFFFFF;
+            --error-color: #e74c3c;
+            --step-bg: #f8f4ff;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Poppins', sans-serif;
+            color: var(--text-color);
+            background-color: var(--white);
+            line-height: 1.6;
+            padding-bottom: 30px;
+        }
+
+        header {
+            background-color: var(--primary-color);
+            color: var(--white);
+            padding: 20px 0;
+            text-align: center;
+        }
+
+        .container {
+            max-width: 800px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+
+        .logo-section {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            margin: 30px 0;
+            text-align: center;
+        }
+
+        .logo {
+            width: 80px;
+            height: 80px;
+            border-radius: 50%;
+            background-color: var(--white);
+            padding: 8px;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+            margin-bottom: 15px;
+        }
+
+        .title {
+            font-size: 24px;
+            font-weight: bold;
+            margin-bottom: 10px;
+            color: var(--primary-color);
+        }
+
+        .subtitle {
+            font-size: 16px;
+            color: var(--dark-gray);
+            max-width: 600px;
+            margin: 0 auto 20px auto;
+        }
+
+        .card {
+            background-color: var(--white);
+            border-radius: 8px;
+            border: 1px solid var(--medium-gray);
+            box-shadow: 0 2px 6px rgba(0, 0, 0, 0.05);
+            margin-bottom: 20px;
+            padding: 20px;
+        }
+
+        .warning-card {
+            background-color: rgba(231, 76, 60, 0.1);
+            border-left: 4px solid var(--error-color);
+        }
+
+        .info-card {
+            background-color: rgba(52, 152, 219, 0.1);
+            border-left: 4px solid #3498db;
+        }
+
+        .card h2 {
+            font-size: 18px;
+            font-weight: 600;
+            margin-bottom: 15px;
+            color: var(--primary-color);
+        }
+
+        .warning-card h2 {
+            color: var(--error-color);
+        }
+
+        .info-card h2 {
+            color: #3498db;
+        }
+
+        .card p {
+            font-size: 15px;
+            color: var(--text-color);
+            line-height: 1.6;
+            margin-bottom: 10px;
+        }
+
+        .step-container {
+            margin: 30px 0;
+        }
+
+        .step {
+            display: flex;
+            margin-bottom: 25px;
+            background-color: var(--step-bg);
+            border-radius: 8px;
+            padding: 15px;
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.05);
+        }
+
+        .step-number {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            width: 36px;
+            height: 36px;
+            background-color: var(--primary-color);
+            color: white;
+            border-radius: 50%;
+            font-weight: bold;
+            margin-right: 15px;
+            flex-shrink: 0;
+        }
+
+        .step-content {
+            flex: 1;
+        }
+
+        .step h3 {
+            font-size: 16px;
+            margin-bottom: 8px;
+            color: var(--primary-color);
+        }
+
+        .step p {
+            font-size: 14px;
+            color: var(--text-color);
+        }
+
+        .screenshot {
+            max-width: 100%;
+            height: auto;
+            border-radius: 8px;
+            border: 1px solid var(--medium-gray);
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+            margin: 15px 0;
+        }
+
+        .footer {
+            text-align: center;
+            margin-top: 40px;
+            padding-top: 20px;
+            border-top: 1px solid var(--medium-gray);
+        }
+
+        .copyright {
+            font-size: 14px;
+            color: var(--dark-gray);
+            margin-bottom: 4px;
+        }
+
+        .contact-info {
+            margin-top: 20px;
+            text-align: center;
+        }
+
+        .contact-info a {
+            color: var(--primary-color);
+            text-decoration: none;
+            font-weight: 500;
+        }
+
+        .contact-info a:hover {
+            text-decoration: underline;
+        }
+
+        @media (max-width: 600px) {
+            .container {
+                padding: 0 15px;
+            }
+            
+            .title {
+                font-size: 20px;
+            }
+            
+            .card {
+                padding: 15px;
+            }
+            
+            .step {
+                flex-direction: column;
+            }
+            
+            .step-number {
+                margin-bottom: 10px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <h1>Patify Hesap Silme İşlemi</h1>
+    </header>
+
+    <div class="container">
+        <div class="logo-section">
+            <div class="logo">
+                <img src="https://placekitten.com/200/200" alt="Patify Logo">
+            </div>
+            <h1 class="title">Patify Hesap Silme Kılavuzu</h1>
+            <p class="subtitle">Bu sayfada Patify uygulamasında hesabınızı kalıcı olarak nasıl sileceğinizi adım adım anlatıyoruz.</p>
+        </div>
+
+        <div class="card warning-card">
+            <h2>Önemli Bilgi</h2>
+            <p>Hesabınızı silmek kalıcı bir işlemdir ve geri alınamaz. Silme işleminden sonra tüm verileriniz, ilanlarınız ve mesajlaşma geçmişiniz tamamen silinecektir.</p>
+        </div>
+
+        <div class="card info-card">
+            <h2>Hesap Silme İşlemi Öncesi</h2>
+            <p>Hesabınızı silmeden önce, önemli bilgilerinizi yedeklemenizi öneririz. Ayrıca, hesabınızı silmek yerine geçici olarak devre dışı bırakmak isterseniz, profil ayarlarınızdan bu seçeneği kullanabilirsiniz.</p>
+        </div>
+
+        <h2 style="margin: 30px 0 15px 0;">Adım Adım Hesap Silme İşlemi</h2>
+
+        <div class="step-container">
+            <div class="step">
+                <div class="step-number">1</div>
+                <div class="step-content">
+                    <h3>Ayarlar Sayfasına Giriş</h3>
+                    <p>Patify uygulamasını açın ve sağ alt köşedeki "Profil" sekmesine dokunun, ardından üst kısımdaki "Ayarlar" butonuna tıklayın.</p>
+                    <!-- Burada ekran görüntüsü ekleyebilirsiniz -->
+                </div>
+            </div>
+
+            <div class="step">
+                <div class="step-number">2</div>
+                <div class="step-content">
+                    <h3>Tehlikeli Bölge</h3>
+                    <p>Ayarlar sayfasını aşağıya kaydırın ve "Tehlikeli Bölge" başlığı altındaki "Hesabımı Sil" butonunu bulun.</p>
+                    <!-- Burada ekran görüntüsü ekleyebilirsiniz -->
+                </div>
+            </div>
+
+            <div class="step">
+                <div class="step-number">3</div>
+                <div class="step-content">
+                    <h3>Onay İletişim Kutusu</h3>
+                    <p>Karşınıza çıkan onay penceresinde "Hesabımı Sil" butonuna tıklayın. Bu adımda hesap silme işleminizin geri alınamayacağı konusunda bir uyarı göreceksiniz.</p>
+                    <!-- Burada ekran görüntüsü ekleyebilirsiniz -->
+                </div>
+            </div>
+
+            <div class="step">
+                <div class="step-number">4</div>
+                <div class="step-content">
+                    <h3>Şifre Doğrulama</h3>
+                    <p>Güvenlik amacıyla şifrenizi girmeniz istenecektir. Şifrenizi doğru bir şekilde girin ve "Hesabı Sil" butonuna dokunun.</p>
+                    <!-- Burada ekran görüntüsü ekleyebilirsiniz -->
+                </div>
+            </div>
+
+            <div class="step">
+                <div class="step-number">5</div>
+                <div class="step-content">
+                    <h3>İşlem Tamamlandı</h3>
+                    <p>Hesabınız başarıyla silindiğinde bir onay mesajı göreceksiniz ve otomatik olarak uygulamadan çıkış yapılacaktır.</p>
+                    <!-- Burada ekran görüntüsü ekleyebilirsiniz -->
+                </div>
+            </div>
+        </div>
+
+        <div class="card">
+            <h2>Sık Sorulan Sorular</h2>
+            
+            <h3 style="margin-top: 15px; font-size: 16px;">Hesabımı sildikten sonra geri alabilir miyim?</h3>
+            <p>Hayır, hesap silme işlemi geri alınamaz. Tüm verileriniz kalıcı olarak silinir.</p>
+            
+            <h3 style="margin-top: 15px; font-size: 16px;">Hesabımı silmek yerine geçici olarak devre dışı bırakabilir miyim?</h3>
+            <p>Evet, hesabınızı tamamen silmek yerine geçici olarak devre dışı bırakmak isterseniz, profil ayarlarınızdan bu seçeneği kullanabilirsiniz.</p>
+            
+            <h3 style="margin-top: 15px; font-size: 16px;">Hesabımı sildikten sonra aynı e-posta ile yeniden kayıt olabilir miyim?</h3>
+            <p>Evet, hesabınızı sildikten sonra aynı e-posta ile yeni bir hesap oluşturabilirsiniz, ancak önceki verilerinize erişemezsiniz.</p>
+        </div>
+
+        <div class="card">
+            <h2>Daha Fazla Yardıma mı İhtiyacınız Var?</h2>
+            <p>Hesap silme işlemiyle ilgili herhangi bir sorunuz veya sorun yaşıyorsanız, lütfen destek ekibimizle iletişime geçin.</p>
+            
+            <div class="contact-info">
+                <p>E-posta: <a href="mailto:support@patify.com">support@patify.com</a></p>
+                <p>Uygulama içi destek: Ayarlar > Destek > İletişim</p>
+            </div>
+        </div>
+
+        <div class="footer">
+            <p class="copyright">© 2025 Patify. Tüm hakları saklıdır.</p>
+        </div>
+    </div>
+</body>
+</html>
